@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+    
+            <ion-item>
+              <ion-label position="floating" >Email</ion-label>
+              <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error-message"
+                  *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+    
+            <ion-item>
+              <ion-label position="floating" >Password</ion-label>
+              <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error-message"
+                  *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+    
+          <div class="ion-padding">
+            <ion-button size="large" class="submit-btn" type="submit" [disabled]="!validations_form.valid" expand="block">Login</ion-button>
+            
+          </div>
+  </form>
+  <p class="go-to-register">
+    Registrate <a (click)="goToRegisterPage()">Create now</a>
+  </p>
+  <p>
+    Login con google
+    <ion-button size="small" color="danger" type="submit" (click)="this.loginGoogle()">
+      <ion-icon name="logo-google"></ion-icon>
+    </ion-button>
+  </p>
+</ion-content>

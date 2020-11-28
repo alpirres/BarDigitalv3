@@ -1,5 +1,7 @@
 {
   "name": "BarDigitalv3",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

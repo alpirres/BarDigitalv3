@@ -1,3 +1,38 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header color="primary" no-border style="text-align:center">
+        <ion-toolbar color="primary" style="text-align:center">
+          <ion-title style="text-align: center;font-weight: normal;font-size: 1.1rem;margin-bottom:15px;margin-top:15px"></ion-title>
+          <ion-avatar style="text-align: center;margin:auto;cursor: pointer;" (click)="updatePic()">
+              <ion-img [src]="base64Image" width="150px" style="border:2px solid #fff"></ion-img>
+          </ion-avatar>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+      <ion-footer>
+        <ion-menu-toggle auto-hide="false" >
+        <ion-item lines="none" [routerDirection]="'root'" [routerLink]="'/login'">
+          <ion-icon slot="start" name="power" ></ion-icon>
+          <ion-label >Cerrar Sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+
+  
 </ion-app>
+

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="goBack()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>Mi reserva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div id="container">
+  <ion-card >
+    <ngx-qrcode 
+      [value]="id">
+    </ngx-qrcode>
+    <ion-label class="ion-padding">
+      <p>Fecha: {{fecha}}</p>
+      <p>Hora: {{hora}}</p>
+    </ion-label>
+  </ion-card>
+</div>
+  <ion-button expand="full" color="tertiary" (click)="downloadQR()" >
+    <ion-icon name="download" slot="start"></ion-icon>
+    Descargar QR
+  </ion-button>
+
+
+</ion-content>

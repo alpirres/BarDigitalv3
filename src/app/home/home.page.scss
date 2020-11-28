@@ -25,3 +25,16 @@
 #container a {
   text-decoration: none;
 }
+
+.mesas {
+  column-count: 2;
+  padding: 8%;
+}
+
+.mesa {
+  display: inline-block;
+  margin: 15px;
+  padding: 3px; 
+  width: 150px;
+  height: 140px;
+}

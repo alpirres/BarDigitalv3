@@ -17,6 +17,7 @@ export class ListReservasPage implements OnInit {
   dataList:Comida[];
   textoBusqueda = '';
   datosfiltrados: Comida[];
+  isSearchBarOpened: boolean = false;
 
   constructor(private ui:UiService, 
     private reserva:ReservaService,
@@ -28,6 +29,10 @@ export class ListReservasPage implements OnInit {
 
   ngOnInit() {
     this.refrescar();
+  }
+
+  alternarSearchbar() {
+    this.isSearchBarOpened = !this.isSearchBarOpened;
   }
 
   public doRefresh(e:any){
@@ -113,12 +118,12 @@ export class ListReservasPage implements OnInit {
   }
 
    public async borraComida(id: string, slidingItem: IonItemSliding) {
-    var choice= await this.ui.presentAlertMultipleButtons('Confirmar', 'Deasea eliminar la nota', 'Cancel', 'Okay');
+    var choice= await this.ui.presentAlertMultipleButtons('Confirmar', 'Deasea eliminar la reserva', 'Cancel', 'Okay');
     if(choice==false){
          this.reserva.deleteTodo(id).then((salida) => {
           this.refrescar();
           console.log("Borrando");
-          this.ui.presentToast('Nota Eliminada',2000,'success');
+          this.ui.presentToast('Eliminada Correctamente',2000,'success');
         }).catch((err) => {
           console.log(err);
         })

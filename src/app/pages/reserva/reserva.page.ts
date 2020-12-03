@@ -96,9 +96,9 @@ export class ReservaPage implements OnInit {
     .catch((err)=>{
       this.ui.presentToast('Error Realizando Reserva',4000,'danger' )
     })
-    .finally(()=>{
+    .finally(async ()=>{
       this.ui.hideLoad();
-      this.openModal(this.id, fecha, hora);
+      await this.openModal(this.id, fecha, hora);
       this.navCtrl.navigateForward('/home')
     })
   }

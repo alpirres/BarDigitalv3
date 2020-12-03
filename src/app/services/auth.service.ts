@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { promise } from 'protractor';
+import { access } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -62,22 +63,21 @@ export class AuthService {
         userId:res.user.uid
       }
       AuthService.user=user;
-      this.saveSesion();
+      this.saveSesion(user);
       })
    }
 
    logoutUser(){
     return new Promise((resolve, reject) => {
-      if(firebase.default.auth().currentUser){
         firebase.default.auth().signOut()
         .then(() => {
           console.log("LOG Out");
+          this.logOut();
           resolve();
         }).catch((error) => {
           reject();
         });
-      }
-    })
+      });
   }
 
   
@@ -94,7 +94,7 @@ export class AuthService {
           
         }
         AuthService.user=user;
-        this.saveSesion();
+        this.saveSesion(user);
         console.log(AuthService.user.userId);
       })
 
@@ -105,17 +105,26 @@ export class AuthService {
     return this.google.trySilentLogin({ offline: false });
   }
 
-  public loginGoogle():Promise<any>{
+  public async loginGoogle():Promise<any>{
     console.log("onLoginGoogle");
-    return this.google.login({}).then((result)=>{
-      const userGoogle= result;
-      this.AFauth.signInWithCredential(firebase.default.auth.GoogleAuthProvider.credential());
+    const res = await this.google.login({
+      'webClientId': '965044951080-ei025ibroqp10k063lq60b5go2jvcqh5.apps.googleusercontent.com',
     });
+    const resConfirmed =  await firebase.default.auth().signInWithCredential(firebase.default.auth.GoogleAuthProvider.credential(res.idToken));
+    let user :User={
+      email:resConfirmed.user.email,
+      displayName:resConfirmed.user.displayName,
+      imageUrl:res.imageUrl,
+      userId:resConfirmed.user.uid
+    }
+    AuthService.user=user;
+    this.saveSesion(user);
   }
 
   async logOut() {    
     this.isLogged = false;
     AuthService.user = null;
+    this.saveSesion(null);
     this.router.navigateByUrl("login");
   }
 
@@ -130,6 +139,7 @@ export class AuthService {
   public async saveSesion(user?:User){
     if(user){
       await this.local.setItem('user',user);
+      this.isLogged=true;
     }else{
       await this.local.remove('user');
     }

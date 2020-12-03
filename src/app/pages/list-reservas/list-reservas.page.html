@@ -1,10 +1,23 @@
-<ion-header>
+<ion-header *ngIf="!isSearchBarOpened">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
+      <ion-title>Reservas</ion-title>
     </ion-buttons>
-    <ion-title>Reservas</ion-title>
-    <ion-searchbar style="float: none; display: block; " animated (ionChange)="searchBar ($event)"></ion-searchbar>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="alternarSearchbar()">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="isSearchBarOpened">
+  <ion-toolbar >
+
+    <ion-searchbar style="height: 35px !important" animated color="light" (ionChange)="searchBar ($event)"
+      showCancelButton="always" (ionCancel)="alternarSearchbar()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'list-reservas',
     loadChildren: () => import('./pages/list-reservas/list-reservas.module').then( m => m.ListReservasPageModule), canActivate: [AuthGuardService]
   },
+  {
+    path: 'ayuda',
+    loadChildren: () => import('./pages/ayuda/ayuda.module').then( m => m.AyudaPageModule), canActivate: [AuthGuardService]
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,229 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title >Soporte y preguntas frecuentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <p class="ayuda-text">
+      Esto es una guia con las instrucciones de uso y algunas de la pregunas mas frecuente, pero si existe
+      alguna pregunta, no dudes en consultarnos escribiendonos a <a style="color: #e9b84e; font-weight: bold;"
+        href="mailto:alfonsoprietoescribano@gmail.com">alfonsoprietoescribano@gmail.com</a>
+    </p>
+
+    <ion-grid class="ion-no-padding seccion-main">
+      <ion-row class="seccion-title">
+        <ion-item lines="none">
+          <ion-label>
+            Primeros Pasos 
+          </ion-label>
+        </ion-item>
+      </ion-row>
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(0)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[0]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[0]" name="remove-circle"></ion-icon>
+            <ion-label>Introducción</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[0]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                La aplicación <strong>Bar Digital</strong> brinda a una gran oportunidad a los hosteleros ya que agiliza el 
+                simple echo de realizar una comanda, simplemente eligiendo la mesa que se desea ocupar, rellenando los datos
+                necesarios para la reserva, haciendo que esta información sea recibida en el bar pueda ser procesada con 
+                tiempo y asi reducir el la espera de los platos al minimo posible y disfrutar de la experiencia de degustar 
+                los mejores platos de cada ciudad. 
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(1)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[1]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[1]" name="remove-circle"></ion-icon>
+            <ion-label>Iniciar Sesión</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[1]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                En la pantalla de inicio de sesión deberá introducir su email y contraseña, aunque tambien podemos 
+                acceder mediante google, simplemente pulsando en <img src="assets/google.jpg"> y seleccionando la cuenta deseada.
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(2)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[2]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[2]" name="remove-circle"></ion-icon>
+            <ion-label>¿Y si no tengo cuenta?</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[2]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Para crearnos una cuenta simplemente tendremos que pulsar sobre <strong>Resgístrate Crear Ahora</strong> 
+                donde se debera de introducir su email y contraseña y pulsar en <img src="assets/registro.jpg">
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+    </ion-grid>
+
+    <ion-grid class="ion-no-padding seccion-main">
+      <ion-row class="seccion-title">
+        <ion-item lines="none">
+          <ion-label>
+            Uso General
+          </ion-label>
+        </ion-item>
+      </ion-row>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(3)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[3]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[3]" name="remove-circle"></ion-icon>
+            <ion-label>Pagina De Inicio</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[3]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Esta es la página principal de la aplicación en la que aparecen varios botones que hacen 
+                referencia a las mesas disponibles <img src="assets/mesa.jpg" width="45">, en las cuales podemos pulsar para realizar una reserva.
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(4)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[4]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[4]" name="remove-circle"></ion-icon>
+            <ion-label>Acceso a menú</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[4]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Para desplegar el menú de la aplicación pulse en el icono superior <img src="assets/menu.jpg">aparecerá desplegado un
+                menú con varias opciones (Reservar, Mis Reservas, Ayuda, Cerrar Sesión).
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(7)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[7]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[7]" name="remove-circle"></ion-icon>
+            <ion-label>Reservar</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[7]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Una vez hemos pulsado sobre una mesa entramos en este apartado, en el cual tendremos que elegir 
+                la fecha, la hora y la comida para poder pulsar el boton de resera, tambien disponemos de un 
+                apartado de comentarios para incluir cualquier obstervacion necesaria. Una vez rellenados todos los datos 
+                pulsamos en <img src="assets/reserva.jpg">
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(8)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[8]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[8]" name="remove-circle"></ion-icon>
+            <ion-label>Codigo qr</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[8]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Este codigo aparece cuando se realiza una reserva el cual contiene lo que se haya elegido anteriormente
+                ademas de un practico boton con el cual puedes compartir el codigo en modo imagen.
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(5)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[5]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[5]" name="remove-circle"></ion-icon>
+            <ion-label>Mis Reservas</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[5]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Aparece una lista de todas las reservas realizadas Aquí puedes deslizar para 
+                la derecha <img src="assets/derecha.jpg" width="45"> para visualizar de nuevo la reserva seleccionada o deslizar para 
+                la izquierda <img src="assets/izquierda.jpg" width="45"> para eliminar una reserva.
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row class="seccion-subtitle">
+          <ion-button (click)="changeIndex(6)" class="seccion-button" fill="clear">
+            <ion-icon *ngIf="items[6]" name="add-circle"></ion-icon>
+            <ion-icon *ngIf="!items[6]" name="remove-circle"></ion-icon>
+            <ion-label>Cerrar Sesion</ion-label>
+          </ion-button>
+        </ion-row>
+        <ion-row [hidden]="items[6]">
+          <ion-item class="seccion-text">
+            <ion-card>
+              <ion-card-content>
+                Esta opcion del menu simplemente finaliza la sesion actual con el usuario actual, para que esten todos
+                tus datos protegidos.
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+
+      
+    </ion-grid>
+
+  </div>
+
+
+</ion-content>

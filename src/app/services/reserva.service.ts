@@ -45,36 +45,7 @@ export class ReservaService {
     });
   }
 
-  /* leerNotasPorUsuario(user: string, loadmore: number, howmany: number): Observable<firebase.default.firestore.QuerySnapshot<firebase.default.firestore.DocumentData>> {
-    console.log(user);
-    if (loadmore == 0) {
-      this.nextQueryAfter = null;
-    }
-
-    this.myCollection = this.getCollectionQuery(user);
-    return new Observable((observer) => {
-      //observer.next()   observer.error();   observer.complete();
-      let subscripcion: Subscription;
-      let tempo = setTimeout(() => {
-        subscripcion.unsubscribe();
-        console.log("aaaaaaaaaaaaaaaaaaaaaa"); 
-      }, 5000);
-      subscripcion = this.conexionColeccion.get().subscribe(res => {
-        console.log("entrando suscripcion");
-
-        this.nextQueryAfter = res.docs[res.docs.length - 1] as QueryDocumentSnapshot<nota>;
-
-
-        clearTimeout(tempo);
-        observer.next(res);
-        observer.complete();
-      },
-        err => { 
-          console.log("eeeeeeeeeeeeeeeeeeeeeeee"); 
-          observer.error(console.log(err)) },
-      )
-    });
-  } */
+  
 
   /**
    * funcion que añade una nueva comida 

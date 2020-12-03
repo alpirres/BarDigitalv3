@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
     })
     .catch(err=>{
       //meter alert
-      this.ui.presentToast('Usuario o Contraseña incorrectos', 40000, 'danger');
+      this.ui.presentToast('Usuario o Contraseña incorrectos', 2000, 'danger');
     })
   }
 
@@ -79,8 +79,7 @@ export class LoginPage implements OnInit {
         console.log("Error aqui 3");
         console.log(err);
         this.auth.loginGoogle()
-          .then(res => {
-            this.auth.isLogged = res;
+          .then(() => {
             this.ui.hideLoad();
             this.router.navigateByUrl('/home');
           })

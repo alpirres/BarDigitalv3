@@ -16,7 +16,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class AppComponent {
 
-  public base64Image:string;
+  public base64Image= 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,7 +26,7 @@ export class AppComponent {
     private camera: Camera
   ) {
     this.initializeApp();
-    this.base64Image='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
+    
   }
 
   initializeApp() {
@@ -35,23 +35,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
     firebase.default.initializeApp(environment.firebaseConfig);
-    this.platform.ready().then(async() => {
-      await this.auth.checkSession();
-      if(this.auth.isAuthenticated()){
-        console.log('aaaaaaa'+AuthService.user.imageUrl);
-        if(AuthService.user.imageUrl.length!=0){
-          this.base64Image=AuthService.user.imageUrl;
-          console.log('cccccccccc'+this.base64Image);
-        }
-        this.router.events.subscribe(event=>{
-          if(event instanceof NavigationEnd){
-            if(this.router.url==='/'|| this.router.url==='/login'){
-              this.router.navigate(['/home']);
-            }
-          }
-        });
-      }
-    });
+    
   }
 
   public appPages = [
@@ -66,9 +50,9 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Localizacion',
-      url: '/geolocate',
-      icon: 'navigate'
+      title: 'Ayuda',
+      url: '/ayuda',
+      icon: 'information-circle-outline'
     }
   ];
   
@@ -98,5 +82,9 @@ export class AppComponent {
     }, (err) => {
       // Handle error
     });
+  }
+
+  cerrarSesion(){
+    this.auth.logoutUser();
   }
 }

@@ -19,6 +19,7 @@ import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { AuthGuardService } from './services/auth-guard.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     Base64ToGallery,
     BarcodeScanner,
     AuthGuardService,
+    SocialSharing,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

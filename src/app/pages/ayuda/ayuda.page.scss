@@ -1,0 +1,74 @@
+.ayuda-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 21px;
+    color: #212121;
+  }
+  
+  .ayuda-text {
+    font-size: 1em;
+    line-height: 1.5384616;
+  }
+  
+  .seccion-main {  
+    padding-top: 8px;
+  }
+  
+  .seccion-title {
+    align-items: center;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: #ddd;
+  
+    ion-label {
+      color: #212121;
+      font-size: 16px;
+      font-weight: bold;
+  
+    }
+  }
+  
+  .seccion-subtitle {
+  
+    margin-top: 10px;
+  }
+  
+  .seccion-text {
+    --padding-start: 0px;
+    --inner-padding-start: 0px;
+    --inner-padding-end: 0px;
+  
+    ion-card {
+      --margin-top: 0px;
+      --inner-margin-top: 0px;
+  
+      --background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 0px;
+  
+      ion-card-content {
+        font-size: 14px;
+        line-height: 1.5384616;
+  
+        ul {
+          padding-left: 16px;
+        }
+      }
+    }
+  
+  }
+  
+  .seccion-button {
+    --padding-start: 0px;
+    --inner-padding-start: 0px;
+  
+  }
+  
+  ion-button {
+    color:  #e9b84e;
+  
+    ion-label {
+      padding-left: 8px;
+    }
+  }

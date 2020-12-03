@@ -26,16 +26,18 @@ export class AppComponent {
     private camera: Camera
   ) {
     this.initializeApp();
-    
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
+    this.platform.ready().then(async () => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
     firebase.default.initializeApp(environment.firebaseConfig);
-    
+  }
+
+  getimegeUrl(){
+    return AuthService.user != null && AuthService.user != undefined && AuthService.user.imageUrl != null && AuthService.user.imageUrl != undefined && AuthService.user.imageUrl.length > 0 ? AuthService.user.imageUrl: this.base64Image;
   }
 
   public appPages = [

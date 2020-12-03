@@ -63,27 +63,35 @@ export class AuthService {
         userId:res.user.uid
       }
       AuthService.user=user;
-      this.saveSesion(user);
+      this.saveSesion(user,false);
       })
    }
 
    logoutUser(){
-    return new Promise((resolve, reject) => {
-        firebase.default.auth().signOut()
-        .then(() => {
-          console.log("LOG Out");
-          this.logOut();
-          resolve();
-        }).catch((error) => {
-          reject();
+    this.local.getItem('googles').then((g:boolean)=>{
+      if(!g){
+        return new Promise((resolve, reject) => {
+          this.AFauth.signOut()
+          .then(() => {
+            console.log("LOG Out");
+            this.logOut();
+            resolve();
+          }).catch((error) => {
+            reject();
+          });
         });
-      });
+      }else{
+        this.google.disconnect();
+        this.logOut();
+      }
+    })
   }
 
   
 
   async OnLogin(value): Promise<any> {
     AuthService.loggingIn = true;
+    
     return firebase.default.auth().signInWithEmailAndPassword(value.email, value.password)
       .then((res) => {
         let user :User={
@@ -94,15 +102,10 @@ export class AuthService {
           
         }
         AuthService.user=user;
-        this.saveSesion(user);
+        this.saveSesion(user,false);
         console.log(AuthService.user.userId);
       })
 
-  }
-
-  onTryLoginGoogle(): Promise<any> {
-    console.log("onTryLoginGoogle");
-    return this.google.trySilentLogin({ offline: false });
   }
 
   public async loginGoogle():Promise<any>{
@@ -118,14 +121,13 @@ export class AuthService {
       userId:resConfirmed.user.uid
     }
     AuthService.user=user;
-    this.saveSesion(user);
+    this.saveSesion(user, true);
   }
 
   async logOut() {    
-    this.isLogged = false;
     AuthService.user = null;
     this.saveSesion(null);
-    this.router.navigateByUrl("login");
+    this.router.navigate(['/login']);
   }
 
   isloggedIn():boolean{
@@ -136,12 +138,15 @@ export class AuthService {
     return true;
   }
 
-  public async saveSesion(user?:User){
-    if(user){
+  public async saveSesion(user?:User, g?:boolean){
+    if(user!=null){
       await this.local.setItem('user',user);
+      await this.local.setItem('googles',g);
       this.isLogged=true;
     }else{
       await this.local.remove('user');
+      await this.local.setItem('googles',false);
+      this.isLogged=false;
     }
   }
 

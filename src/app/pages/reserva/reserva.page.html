@@ -9,13 +9,13 @@
   <form [formGroup]="reservaForm" (ngSubmit)="addComida()">
     <ion-item>
       <ion-label>Fecha</ion-label>
-      <ion-datetime tipe="text" displayFormat="DD/MM/YYYY" min="2020-09-01" max="2020-12-31"
+      <ion-datetime tipe="text" displayFormat="DD/MM/YYYY" min="2020-12-01" max="2021-03-31"
         placeholder="Selecciona Fecha" formControlName="fecha"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>Hora</ion-label>
-      <ion-datetime tipe="text" displayFormat="HH:mm" hourValues="13,14,15,20,21,22,23" minuteValues="0,30"
+      <ion-datetime tipe="text" displayFormat="HH:mm" hourValues="12,13,14,15,16,17" minuteValues="0,15,30,45"
         placeholder="Selecciona Hora" formControlName="hora"></ion-datetime>
     </ion-item>
 

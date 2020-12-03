@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UiService } from 'src/app/services/ui.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,10 @@ export class LoginPage implements OnInit {
 
   constructor( private auth:AuthService,
     private ui:UiService,
+    public menu: MenuController,
     private router:Router, 
     private formBuilder: FormBuilder
-    ) { }
+    ) { this.menu.enable(false, 'menu');}
 
   ngOnInit() {
     
@@ -67,29 +69,15 @@ export class LoginPage implements OnInit {
 
   public async loginGoogle(){
     await this.ui.showLoading("Cargando...");
-    this.auth.onTryLoginGoogle().then(res => {
+    this.auth.loginGoogle()
+      .then(() => {
         this.ui.hideLoad();
-        console.log("##########################");
-        console.log(res);
-        this.auth.saveSesion(res);
-        this.auth.isLogged = res;
         this.router.navigateByUrl('/home');
       })
       .catch(err => {
-        console.log("Error aqui 3");
-        console.log(err);
-        this.auth.loginGoogle()
-          .then(() => {
-            this.ui.hideLoad();
-            this.router.navigateByUrl('/home');
-          })
-          .catch(err => {
-            this.ui.hideLoad();
-            this.ui.presentToast(err, 4000, "danger");
-          })
-
+        this.ui.hideLoad();
+        this.ui.presentToast(err, 4000, "danger");
       })
-    
   }
 
   public goToRegisterPage(){

@@ -79,8 +79,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.ape.bardigital",
-        "WEB_APPLICATION_CLIENT_ID": "965044951080-ei025ibroqp10k063lq60b5go2jvcqh5.apps.googleusercontent.com"
+        "REVERSED_CLIENT_ID": "xxxxxxxxxxxx",
+        "WEB_APPLICATION_CLIENT_ID": "xxxx-xxxx-xxxx"
       },
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-whitelist": {},

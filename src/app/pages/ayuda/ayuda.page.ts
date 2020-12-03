@@ -28,6 +28,10 @@ export class AyudaPage implements OnInit {
     true
   ]
 
+  /**
+   * Funcion que alterna los elementos de la vista segun se seleccionen
+   * @param index numero con el elemento seleccionado
+   */
   changeIndex(index: number) {
     if( this.items[index]){
       this.closeAll();
@@ -37,6 +41,9 @@ export class AyudaPage implements OnInit {
     }
   }
 
+  /**
+   * Funcion que cierra todos los elementos de la vista
+   */
   closeAll(){
     for(let i=0;i<this.items.length; i++){
      this.items[i]=true; 

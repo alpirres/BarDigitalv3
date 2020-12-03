@@ -38,13 +38,6 @@ export class LoginPage implements OnInit {
     })
   }
 
-
-  public async cerrarSesion(){
-    await this.ui.showLoading();
-    await this.auth.logOut();
-    await this.ui.hideLoad();
-  }
-
   validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required.' },
@@ -56,6 +49,10 @@ export class LoginPage implements OnInit {
     ]
   };
 
+  /**
+   * Funcion que inicia sesion en la aplicaccion y redirige a home 
+   * @param value array que contiene el email y la contraseña
+   */
   public loginUser(value){
     this.auth.OnLogin(value)
     .then(res => {
@@ -67,6 +64,9 @@ export class LoginPage implements OnInit {
     })
   }
 
+  /**
+   * Funcion que inicia sesion mediante una cuenta de google y redirige a login
+   */
   public async loginGoogle(){
     await this.ui.showLoading("Cargando...");
     this.auth.loginGoogle()
@@ -80,6 +80,9 @@ export class LoginPage implements OnInit {
       })
   }
 
+  /**
+   * Funcion que redirige a la pagina de registro
+   */
   public goToRegisterPage(){
     this.router.navigate(['/register']);
   }

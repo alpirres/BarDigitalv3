@@ -18,12 +18,17 @@ export class ReservaService {
   }
 
    /**
-   * 
+   * Funcion que recoge todos los datos de firebase
    */
   reedTodo(): Observable<firebase.default.firestore.QuerySnapshot>{
     return this.myCollection.get();
   }
 
+  /**
+   * Funcion que lanza un time out y setea los datos que recibe de la funcion anterior a un array para ser usados.
+   * @param user string que contiene el id del usuario que esta logeado
+   * @param timer number que contiene el timpo que dura el time out
+   */
   readTodo(user: string, timer: number=10000): Observable<Comida[]>{
     return new Observable((observer)=>{
       let subcripcion:Subscription;
@@ -48,7 +53,7 @@ export class ReservaService {
   
 
   /**
-   * funcion que añade una nueva comida 
+   * Funcion que añade una nueva comida a firebase 
    * @param myComida 
    */
   addTodo(myComida:Comida):Promise<firebase.default.firestore.DocumentReference>{
@@ -57,25 +62,25 @@ export class ReservaService {
   }
 
   /**
-   * funcion para obtener todos los datos
-   * @param id 
+   * Funcion para obtener todos los datos de una reserva mediante el id
+   * @param id string con el identificador de la reserva
    */
   readTodoById(id:string):Observable<firebase.default.firestore.DocumentSnapshot>{
     return this.myCollection.doc(id).get();
   }
 
   /**
-   * funcion que actualiza una comida mediante su id
-   * @param id 
-   * @param data 
+   * Funcion que actualiza una comida mediante su id
+   * @param id string que contiene el identificador de la reserva
+   * @param data Comida 
    */
   updateTodo(id:string, data:Comida):Promise<void>{
     return this.myCollection.doc(id).set(data);
   }
 
-  /**funcion que elimina
-   * 
-   * @param id 
+  /**
+   * Funcion que elimina una reserva segun su id de firebase
+   * @param id string con el identificador de la reserva
    */
   deleteTodo(id:string):Promise<void>{
     return this.myCollection.doc(id).delete();
@@ -83,7 +88,7 @@ export class ReservaService {
 
 /**
  * funcion que filtra mediante el parametro de la fecha
- * @param fecha 
+ * @param fecha string con la fecha a filtrar
  */
   searchTodo(fecha:string): Observable<firebase.default.firestore.DocumentSnapshot>{
     return this.myCollection.doc(fecha).get();

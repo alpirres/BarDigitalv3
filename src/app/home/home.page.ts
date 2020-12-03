@@ -20,6 +20,10 @@ export class HomePage {
       this.menu.enable(true, 'menu')
     }
 
+    /**
+     * Funcion que redirige la pagina Reserva
+     * @param mesa string con el numero de la mesa que se a seleccionado
+     */
   public reservar(mesa:string){
     this.navCtrl.navigateForward('/reserva/'+mesa);
   }

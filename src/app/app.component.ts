@@ -16,30 +16,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class AppComponent {
 
+  //esta es la imagen por defecto del avatar del menu
   public base64Image= 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private auth:AuthService,
-    private router:Router,
-    private camera: Camera
-  ) {
-    this.initializeApp();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(async () => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-    firebase.default.initializeApp(environment.firebaseConfig);
-  }
-
-  getimegeUrl(){
-    return AuthService.user != null && AuthService.user != undefined && AuthService.user.imageUrl != null && AuthService.user.imageUrl != undefined && AuthService.user.imageUrl.length > 0 ? AuthService.user.imageUrl: this.base64Image;
-  }
-
   public appPages = [
     {
       title: 'Reservar',
@@ -57,9 +35,39 @@ export class AppComponent {
       icon: 'information-circle-outline'
     }
   ];
-  
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private auth:AuthService,
+    private router:Router,
+    private camera: Camera
+  ) {
+    this.initializeApp();
+  }
 
+  /**
+   * Esta funcion es la que se ejecuta para inicializar la app
+   */
+  initializeApp() {
+    this.platform.ready().then(async () => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+    firebase.default.initializeApp(environment.firebaseConfig);
+  }
 
+  /**
+   * funcion que actualiza el avatar del menu por si entramos con google y tiene alguna foto predafinida
+   */
+  getimegeUrl(){
+    return AuthService.user != null && AuthService.user != undefined && AuthService.user.imageUrl != null && AuthService.user.imageUrl != undefined && AuthService.user.imageUrl.length > 0 ? AuthService.user.imageUrl: this.base64Image;
+  }
+
+  /**
+   * Funcion que abre la camara de fotos en modo selfie y que actualiza el avatar del menu poniendo la foto que acabamos de realizar
+   * y ademas la guarda en la galeria
+   */
   updatePic() {
 
     const options: CameraOptions = {
@@ -86,6 +94,9 @@ export class AppComponent {
     });
   }
 
+  /**
+   * Funcion que ejecuta el logoutUser() de authService para cerrar sesion
+   */
   cerrarSesion(){
     this.auth.logoutUser();
   }

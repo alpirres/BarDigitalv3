@@ -56,10 +56,19 @@ export class ReservaPage implements OnInit {
     })
   }
 
+  /**
+   * Funcion que redirige a home cuando se pulsa el boton atras del dispositivo
+   */
   back(){
     this.navCtrl.navigateForward('/home')
   }
 
+  /**
+   * Funcion que cambia el checkbox de la comida a seleccionado o no y actualiza el precio total de la comida
+   * @param detail 
+   * @param name 
+   * @param price 
+   */
   onChangeCheckBox(detail: boolean, name: string, price:number){
     if(!this.comida.includes(name)&&detail){
       this.comida.push(name);
@@ -72,6 +81,9 @@ export class ReservaPage implements OnInit {
     }
   }
   
+  /**
+   * Funcion que agrega una nueva reserva a la base de datos y llama a la funcion openmodal pasandole el id, la fecha y la hora de esta
+   */
   addComida(){
     let fecha= this.reservaForm.get('fecha').value.split('T')[0];
     let fechora= this.reservaForm.get('hora').value.split('T')[1];
@@ -103,6 +115,12 @@ export class ReservaPage implements OnInit {
     })
   }
 
+  /**
+   * Funcion que abre el modal con los siguientes datos 
+   * @param id string con el identificador de la reserva
+   * @param fecha string con la fecha de la reserva
+   * @param hora string con la hora de la reserva
+   */
   async openModal(id:string, fecha:string, hora:string){
     const modal = await this.modalController.create({
       
@@ -120,6 +138,9 @@ export class ReservaPage implements OnInit {
      return await modal.present();
   }
 
+  /**
+   * Funcion que cuando se abandona la pagina hace un rset para poner todos los datos como al principio
+   */
   ionViewDidLeave(){
     this.reservaForm.reset();
   }

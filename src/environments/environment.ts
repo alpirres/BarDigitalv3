@@ -4,17 +4,18 @@
 
 export const environment = {
   production: false,
+  //variable de configuracion de firebase para poder conectar y realizar el crud
   firebaseConfig : {
-    apiKey: "AIzaSyAxhTGaHZjfRip6-ErSVXpqUcN4U-TcP7w",
-    authDomain: "bardigital-6b2a4.firebaseapp.com",
-    databaseURL: "https://bardigital-6b2a4.firebaseio.com",
-    projectId: "bardigital-6b2a4",
-    storageBucket: "bardigital-6b2a4.appspot.com",
-    messagingSenderId: "965044951080",
-    appId: "1:965044951080:web:69c24b7707b181b0e1bd1d",
-    measurementId: "G-WP83PJVLR5"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
   },
-  coleccion: "comida",
+  coleccion: "",
 };
 
 /*

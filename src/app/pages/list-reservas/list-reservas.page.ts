@@ -23,18 +23,28 @@ export class ListReservasPage implements OnInit {
     private reserva:ReservaService,
     private modalController: ModalController,
     public alertController: AlertController
-    ) {
-      
-    }
+    ) {}
 
+    /**
+     * Funcion que se ejecuta al entrar a la pagina
+     */
   ngOnInit() {
     this.refrescar();
   }
 
+  /**
+   * Funcion que muestra y oculta la barra de buscar
+   */
   alternarSearchbar() {
     this.isSearchBarOpened = !this.isSearchBarOpened;
   }
 
+  /**
+   * Funcion que llama a la funcion refrescar()
+   * Then: terminar el elvento
+   * Error: mostrar mensaje en consola y terminar el evento 
+   * @param e evento de arrastrar hacia abajo 
+   */
   public doRefresh(e:any){
     this.refrescar().then(()=>{
       e.target.complete()
@@ -45,6 +55,10 @@ export class ListReservasPage implements OnInit {
     });
 }
 
+
+/**
+ * Funcion muetra un loading, carga los datos de firebase y cierra el loading
+ */
   private async refrescar() {
     
     await this.ui.showLoading();
@@ -67,6 +81,10 @@ export class ListReservasPage implements OnInit {
     }
   }
 
+  /**
+   * Funcion que aplica un filtro sobre los los datos y solo muestra los que coinciden con la busquedad
+   * @param evt evento que cambia conforme se va escribiendo en la barrade busquedad
+   */
   public searchBar(evt){
     console.log(evt.target.value);
     let texto=evt.target.value;
@@ -94,10 +112,20 @@ export class ListReservasPage implements OnInit {
 
   }
 
+  /**
+   * Funcion que carga los datos en otro array para mostrar los filtrados
+   */
   cargarDatosAFiltro(): void {
     this.datosfiltrados = this.dataList;
   }
 
+  /**
+   * Funcion abre y cierra un modal con los datos de una reserva, llama a la funcion refrescar() y cierra el slaiding abierto
+   * @param id string con el identificador de la reserva
+   * @param fecha string con la fecha de la reserva
+   * @param hora string con la hora de la reserva
+   * @param slidingItem IonItemSlinding que corresponde al deslizar hacia derecha o izquierda
+   */
   async editaComida(id:string ,fecha:string ,hora:string , slidingItem: IonItemSliding){
     
     const modal = await this.modalController.create({
@@ -117,6 +145,12 @@ export class ListReservasPage implements OnInit {
      return await modal.present();
   }
 
+  /**
+   * Funcion que borra una reserva de la base de datos con un alert de confirmacion, que si pulsamos en okey debuelve false
+   * y se ejecuta la funcion deleteTodo
+   * @param id string con el id de la reserva
+   * @param slidingItem IonItemSlinding que corresponde al deslizar hacia derecha o izquierda
+   */
    public async borraComida(id: string, slidingItem: IonItemSliding) {
     var choice= await this.ui.presentAlertMultipleButtons('Confirmar', 'Deasea eliminar la reserva', 'Cancel', 'Okay');
     if(choice==false){

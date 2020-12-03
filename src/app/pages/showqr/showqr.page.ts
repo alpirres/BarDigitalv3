@@ -33,6 +33,9 @@ export class ShowqrPage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Funcion que redirige a list-reservas cuando se pulsa el boton atras del dispositivo y finaliza el modal
+   */
   goBack(){
     this.navCtrl.navigateForward('/list-reservas');
     this.modalController.dismiss();
@@ -40,21 +43,8 @@ export class ShowqrPage implements OnInit {
 
 
   /**
-   * Función que descarga el codigo qr en la galeria de un dispositivo movil
-   * mediante una conversion a base 64
+   * Funcion para compartir por WhatsApp el codigo qr, a esta funcion se le tiene que pasar un texto por defecto la imagen
    */
-  downloadQR(){
-   
-    const imageData= document.getElementsByTagName('img')[0].src;
-    let data = imageData.split(',')[1];
-    console.log(data);
-    this.base64.base64ToGallery(data, {prefix: 'img', mediaScanner:true })
-    .then(
-      res=> this.ui.presentToast('Qr guardado en la Galeria', 2000, 'success'),
-      err=> console.log('Error saving image to gallery ', err));
-    
-  }
-
   ShareWhatsapp(){
     this.socialSharing.shareViaWhatsApp(this.text, document.getElementsByTagName('img')[0].src)
   }

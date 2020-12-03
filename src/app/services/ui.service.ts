@@ -14,6 +14,10 @@ export class UiService {
     public toast: ToastController,
     public alertController: AlertController) { }
 
+    /**
+     * Funcion que muetra un loading mietras se ejecuta algo internamente
+     * @param msg string opcional que se puede añadir al loading
+     */
   async showLoading(msg?: string) {
     if (this.miLoading) {
       console.log("Ya hay un loading activo");
@@ -25,11 +29,20 @@ export class UiService {
     await this.miLoading.present();
   }
 
+  /**
+   * Funcion que cierra el loading
+   */
   public hideLoad() {
     this.miLoading = null;
     this.loading.dismiss();
   }
 
+  /**
+   * Funcion que muestra el toast
+   * @param msg string con el mensaje a mostrar
+   * @param dur numero con la duracion para ocultarse
+   * @param col string color
+   */
   async presentToast(msg: string, dur: number = 2000, col: string = "danger"): Promise<void> {
     if (this.miToast) {
       this.toast.dismiss();
@@ -55,13 +68,22 @@ export class UiService {
     this.miToast.present();
   }
 
+  /**
+   * Funcion que quita el toast
+   */
   public hideToast() {
     this.miToast = null;
     this.toast.dismiss();
   }
 
 
-
+  /**
+   * Funcion que muestra un alert con opciones
+   * @param header string con el nombre del titulo
+   * @param message string con el mensaje
+   * @param opcionSi sting para la opcion si
+   * @param opcionNo string para la opcion no
+   */
   async presentAlertMultipleButtons(header: string, message: string, opcionSi: string = 'Si', opcionNo: string = 'No') {
     let choice: boolean;
     const alert = await this.alertController.create({
@@ -92,6 +114,12 @@ export class UiService {
     return choice;
   }
 
+  /**
+   * Funcion que muestra un alert con una sola opcion
+   * @param header string con el titulo 
+   * @param message string con el mensage
+   * @param opcionSi string para la opcion si que por defecto es aceptar
+   */
   async presentAlert(header: string, message: string, opcionSi: string = 'Aceptar') {
     let sol: boolean = false;
     const alert = await this.alertController.create({

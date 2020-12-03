@@ -27,6 +27,10 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  /**
+   * Funcion que registra un usuario en la apicacion y redirige a home
+   * @param value array que contiene el email y la contaseña
+   */
   public tryRegister(value){
     this.auth.registerUser(value)
      .then(res => {
@@ -36,6 +40,9 @@ export class RegisterPage implements OnInit {
     })
   }
  
+  /**
+   * Funcion que redirige a la pagina de login
+   */
   public goLoginPage(){
     this.router.navigate(['/login']);
   }
